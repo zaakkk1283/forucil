@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih untuk Satu Bulan Indah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cream: #f5f1e6;
+            --light-cream: #faf8f3;
+            --light-brown: #d7ccc8;
+            --medium-brown: #a1887f;
+            --dark-brown: #5d4037;
+            --accent: #8d6e63;
+            --text: #4e342e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--medium-brown);
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--dark-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo i {
+            margin-right: 15px;
+            color: var(--accent);
+        }
+        
+        .tagline {
+            font-style: italic;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-brown);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+        
+        .photo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .photo-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .photo-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .photo-frame {
+            width: 100%;
+            height: 300px;
+            background-color: var(--light-brown);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border: 8px solid var(--medium-brown);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            text-align: center;
+            color: var(--dark-brown);
+            padding: 20px;
+            display: none;
+        }
+        
+        .photo-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .photo-caption {
+            margin-top: 15px;
+            font-style: italic;
+            color: var(--accent);
+        }
+        
+        .message-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .highlight {
+            background-color: rgba(141, 110, 99, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.2rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .flowers-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .flower {
+            position: absolute;
+            opacity: 0.7;
+            font-size: 1.5rem;
+            animation: float 15s infinite linear;
+        }
+        
+        .flower:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+        
+        .flower:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+        
+        .flower:nth-child(3) {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 4s;
+            animation-duration: 22s;
+        }
+        
+        .flower:nth-child(4) {
+            bottom: 25%;
+            right: 5%;
+            animation-delay: 6s;
+            animation-duration: 17s;
+        }
+        
+        .flower:nth-child(5) {
+            top: 40%;
+            left: 8%;
+            animation-delay: 8s;
+            animation-duration: 19s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-40px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid var(--medium-brown);
+            color: var(--accent);
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .special-message {
+            background: linear-gradient(135deg, var(--light-cream) 0%, var(--light-brown) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px solid var(--medium-brown);
+        }
+        
+        .special-message h3 {
+            color: var(--dark-brown);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .instruction {
+            background-color: var(--light-cream);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px dashed var(--medium-brown);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .edit-instruction {
+            background-color: rgba(141, 110, 99, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="flowers-container">
+        <div class="flower">🌼</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌷</div>
+        <div class="flower">💮</div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>1 Bulan dengan Kara</span>
+            </div>
+            <p class="tagline">Celebrating one month of happiness together</p>
+        </header>
+        
+        <section class="hero">
+            <h1>Terima Kasih untuk atas satu bulan ini ya sayang</h1>
+            <p class="subtitle">Appreciating every precious moment together</p>
+            
+            <div class="special-message">
+                <h3><i class="fas fa-star"></i> Tentang Dirimu</h3>
+                <p>"Setiap hari bersamamu adalah pengingat betapa beruntungnya mas menemukan seseorang yang tidak hanya membuat mas tersenyum, tetapi juga menginspirasi mas untuk menjadi pribadi yang lebih baik. Cara kamu melihat dunia dengan kebaikan dan ketulusan adalah hal paling indah yang pernah mas saksikan."</p>
+            </div>
+        </section>
+        
+        <div class="photo-section">
+            <!-- Foto 1: Gambar dia sendiri -->
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="melihat.jpg" alt="Foto Kara sendiri" onerror="this.style.display='none'; document.getElementById('photo1-placeholder').style.display='block'">
+                    <div class="photo-placeholder" id="photo1-placeholder">
+                        <i class="fas fa-user"></i>
+                        <h3>GAMBAR DIA SENDIRI</h3>
+                        <p>Foto terbaiknya yang selalu membuatku tersenyum</p>
+                    </div>
+                </div>
+                <p class="photo-caption">"Every time I see you, I discover a peace beyond measure."</p>
+                </div>
+            </div>
+            
+            <!-- Foto 2: Gambar pertemuan pertama -->
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="pertemuan.jpg" alt="Foto pertemuan pertama" onerror="this.style.display='none'; document.getElementById('photo2-placeholder').style.display='block'">
+                    <div class="photo-placeholder" id="photo2-placeholder">
+                        <i class="fas fa-handshake"></i>
+                        <h3>GAMBAR PERTEMUAN PERTAMA</h3>
+                        <p>Momen ketika segalanya dimulai</p>
+                    </div>
+                </div>
+                <p class="photo-caption">"Hari ketika takdir mempertemukan dua hati yang saling mencari"</p>
+               
+            </div>
+            
+            <!-- Foto 3: Gambar saat dia makan -->
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="makan.jpg" alt="Foto saat Kara makan" onerror="this.style.display='none'; document.getElementById('photo3-placeholder').style.display='block'">
+                    <div class="photo-placeholder" id="photo3-placeholder">
+                        <i class="fas fa-utensils"></i>
+                        <h3>GAMBAR SAAT DIA MAKAN</h3>
+                        <p>Momen sederhana yang begitu berkesan</p>
+                    </div>
+                </div>
+                <p class="photo-caption">"Happiness is as simple as watching you enjoy your food."</p>
+                <div class=""">
+                </div>
+            </div>
+            
+            <!-- Foto 4: Gambar saat dia senang -->
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="senyum.jpg" alt="Foto saat Kara senang" onerror="this.style.display='none'; document.getElementById('photo4-placeholder').style.display='block'"> 
+                    <div class="photo-placeholder" id="photo4-placeholder">
+                        <i class="fas fa-laugh"></i>
+                        <h3>GAMBAR SAAT DIA SENANG</h3>
+                        <p>Ekspresi bahagia yang ingin selalu kulihat</p>
+                    </div>
+                </div>
+                <p class="photo-caption">"Your laughter is the most beautiful music I’ve ever heard."</p>
+                <div class="i love you">
+            </div>
+        </div>
+        
+    <audio id="backgroundMusic" loop>
+        <source src="love.mp3" type="audio/mpeg">
+        <source src="lagu_romantis.ogg" type="audio/ogg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <div class="music-player">
+        <button id="musicToggle" class="music-btn">
+            <i class="fas fa-play"></i>
+        </button>
+        <span class="music-label">Putar Musik</span>
+    </div>
+
+    <style>
+    .music-player {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+    }
+
+    .music-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+
+    .music-btn:hover {
+        background: var(--dark-brown);
+    }
+
+    .music-label {
+        font-size: 0.9rem;
+        color: var(--dark-brown);
+    }
+    </style>
+
+    <script>
+    // Kontrol Musik
+    const music = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = musicToggle.querySelector('i');
+
+    // Auto play musik saat halaman dimuat
+    window.addEventListener('load', function() {
+        music.play().catch(e => {
+            console.log('Auto play blocked, user perlu mengklik tombol');
+        });
+    });
+
+    // Toggle play/pause
+    musicToggle.addEventListener('click', function() {
+        if (music.paused) {
+            music.play();
+            musicIcon.className = 'fas fa-pause';
+            document.querySelector('.music-label').textContent = 'Jeda Musik';
+        } else {
+            music.pause();
+            musicIcon.className = 'fas fa-play';
+            document.querySelector('.music-label').textContent = 'Putar Musik';
+        }
+    });
+    </script>
+
+</body>
+</html> 
+        
+        <section class="message-card">
+            <h2><i class="fas fa-heart"></i> Ucapan Terima Kasih</h2>
+            <div class="message">
+                <p>Terima kasih telah menjadi bagian dari hidup mas selama satu bulan terakhir. Waktu yang singkat ini telah memberikan begitu banyak makna dan kebahagiaan.</p>
+                
+                <div class="highlight">
+                    "Terima kasih untuk semua tawa, percakapan dalam, dan keheningan yang nyaman. Terima kasih telah menunjukkan bahwa cinta tidak harus rumit untuk berarti."
+                </div>
+                
+                <p>Mas bersyukur bisa mengenalmu lebih dalam, belajar tentang mimpimu, dan melihat dunia melalui matamu. Setiap momen bersamamu adalah hadiah yang selalu mas hargai.</p>
+                
+                <p>Mari kita lanjutkan perjalanan ini dengan tetap menjadi diri sendiri, saling mendukung, dan menciptakan lebih banyak kenangan indah bersama.</p>
+            </div>
+        
+        <footer>
+            <p>Dengan penuh kasih dan terima kasih,</p>
+            <p class="signature">- Elvar -</p>
+            <p style="margin-top: 20px;">&copy; 2025 OneMonthTogether. Semua kenangan disimpan dengan penuh kasih.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Script untuk menampilkan placeholder jika gambar tidak ditemukan
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.photo-frame img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const placeholder = this.parentElement.querySelector('.photo-placeholder');
+                    if (placeholder) {
+                        placeholder.style.display = 'block';
+                    }
+                };
+            });
+        });
+    </script>
+</body>
+</html>
